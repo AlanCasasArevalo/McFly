@@ -39,7 +39,13 @@ const getNoteById = async (req, res, next) => {
 const getAllFavoriteNotes = async (req, res, next) => {
     try {
         const allNotes = await NoteModel.find({favorite: true})
-        res.status(200).json(allNotes)
+        if (allNotes && typeof allNotes !== 'undefined') {
+            res.status(200).json(allNotes)
+        } else {
+            res.status(404).json({
+                message: 'Resource was not found'
+            })
+        }
     } catch (error) {
         next(error)
     }
