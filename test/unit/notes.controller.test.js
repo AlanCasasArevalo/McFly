@@ -11,6 +11,8 @@ NoteModel.findById = jest.fn()
 NoteModel.findByIdAndUpdate = jest.fn()
 NoteModel.findByIdAndDelete = jest.fn()
 
+const noteId = "5f8ad67be5695a197574deb5"
+
 let req, res, next
 
 beforeEach(() => {
@@ -52,6 +54,12 @@ describe('NoteController', () => {
     describe('Note Controller GET Note BY ID ', () => {
         it('Should have a getNoteById function', () => {
             expect(typeof noteController.getNoteById).toBe('function')
+        })
+
+        it('Should call NoteModel.find({id:}) with route parameters', async () => {
+            req.params.id = noteId
+            await noteController.getNoteById(req, res, next)
+            expect(NoteModel.findById).toHaveBeenCalledWith(noteId)
         })
     })
     describe('Note Controller POST new note', () => {
