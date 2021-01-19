@@ -6,5 +6,8 @@ router
     .get('/notes',
         noteController.getAllNotes
     )
+    .get('/notes/:id',
+        noteController.getNoteById
+    )
 
 module.exports = router
