@@ -69,6 +69,17 @@ describe('NoteController', () => {
             expect(res._isEndCalled()).toBeTruthy()
             expect(res._getJSONData()).toStrictEqual(newNote)
         })
+
+        it('Should handle errors', async function () {
+            const errorMessage = {
+                message: 'Error Finding'
+            }
+            const rejectedPromise = Promise.reject(errorMessage)
+            NoteModel.findById.mockReturnValue(rejectedPromise)
+            await noteController.getNoteById(req, res, next)
+            expect(next).toHaveBeenCalledWith(errorMessage)
+        });
+
     })
     describe('Note Controller POST new note', () => {
 
