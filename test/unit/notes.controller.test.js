@@ -44,5 +44,21 @@ describe('NoteController', () => {
             expect(res._isEndCalled()).toBeTruthy()
         });
 
+        it('Should return JSON body in response when everything it is ok', async function () {
+            NoteModel.create.mockReturnValue(newNote)
+            await noteController.createNote(req, res, next)
+            expect(res._getJSONData()).toStrictEqual(newNote)
+        });
+
+        it('Should handle errors', async function () {
+            const errorMessage = {
+                message: 'Some properties required was not sent'
+            }
+            const rejectedPromise = Promise.reject(errorMessage)
+            NoteModel.create.mockReturnValue(rejectedPromise)
+            await noteController.createNote(req, res, next)
+            expect(next).toHaveBeenCalledWith(errorMessage)
+        });
+
     })
 })
