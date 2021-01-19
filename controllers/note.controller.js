@@ -20,6 +20,8 @@ const getAllNotes = async (req, res, next) => {
 }
 
 const getNoteById = async (req, res, next) => {
+    const id = req.params.id
+    const note  = await NoteModel.findById(id)
 }
 
 module.exports = {
