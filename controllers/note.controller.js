@@ -20,14 +20,18 @@ const getAllNotes = async (req, res, next) => {
 }
 
 const getNoteById = async (req, res, next) => {
-    const id = req.params.id
-    const note  = await NoteModel.findById(id)
-    if (note && typeof note !== 'undefined') {
-        res.status(200).json(note)
-    } else {
-        res.status(404).json({
-            message: 'Resource was not found'
-        })
+    try {
+        const id = req.params.id
+        const note = await NoteModel.findById(id)
+        if (note && typeof note !== 'undefined') {
+            res.status(200).json(note)
+        } else {
+            res.status(404).json({
+                message: 'Resource was not found'
+            })
+        }
+    } catch (error) {
+        next(error)
     }
 
 }
