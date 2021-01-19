@@ -2,6 +2,13 @@ const express = require('express')
 const app = express()
 
 app.use(express.json())
+const noteRoutes = require('./routes/notes.routes')
+
+const mongoDB = require('./mongodb/mongodb.connection')
+
+mongoDB.connect()
+
+app.use('/', noteRoutes)
 
 app.get('/', (req, res) => {
     res.status(200).json({

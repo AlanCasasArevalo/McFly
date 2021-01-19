@@ -13,7 +13,11 @@ const createNote = async (req, res, next) => {
 const getAllNotes = async (req, res, next) => {
     try {
         const allNotes = await NoteModel.find({})
-        res.status(200).json(allNotes)
+        if (allNotes && typeof allNotes != 'undefined') {
+            res.status(200).json(allNotes)
+        } else {
+            res.status(200).json([])
+        }
     } catch (error) {
         next(error)
     }
