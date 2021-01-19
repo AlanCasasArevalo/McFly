@@ -11,5 +11,9 @@ router
     .get('/notes/:id',
         noteController.getNoteById
     )
+    .put('/notes/:id',
+        noteController.updateNote
+    )
+
 
 module.exports = router
