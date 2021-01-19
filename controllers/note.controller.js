@@ -43,6 +43,8 @@ const updateNote = async (req, res, next) => {
         new: true,
         useFindAndModify: false
     })
+
+     res.status(200).json(updateNote)
 }
 
 module.exports = {
