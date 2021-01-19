@@ -3,6 +3,8 @@ const router = express.Router()
 const noteController = require('../controllers/note.controller')
 
 router
+    .post('/notes',
+        noteController.createNote)
     .get('/notes',
         noteController.getAllNotes
     )
