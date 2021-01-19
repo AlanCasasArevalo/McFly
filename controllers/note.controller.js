@@ -19,7 +19,11 @@ const getAllNotes = async (req, res, next) => {
     }
 }
 
+const getNoteById = async (req, res, next) => {
+}
+
 module.exports = {
     createNote,
-    getAllNotes
+    getAllNotes,
+    getNoteById
 }
