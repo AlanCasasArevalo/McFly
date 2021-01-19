@@ -4,6 +4,12 @@ const httpsMocks = require('node-mocks-http')
 const noteController = require('../../controllers/note.controller')
 const NoteModel = require("../../model/note.model");
 
+NoteModel.create = jest.fn()
+NoteModel.find = jest.fn()
+NoteModel.findById = jest.fn()
+NoteModel.findByIdAndUpdate = jest.fn()
+NoteModel.findByIdAndDelete = jest.fn()
+
 let req, res, next
 
 beforeEach(() => {
