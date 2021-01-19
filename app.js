@@ -16,6 +16,12 @@ app.get('/', (req, res) => {
     })
 })
 
+app.use((error, req, res, next) => {
+    res.status(500).json({
+        message: error.message
+    })
+})
+
 app.all('*', (req, res) => {
     res.status(404).json({
         status: 'fail',

@@ -35,4 +35,28 @@ describe(endpointUrl, () => {
         })
     })
 
+    describe('POST NOTE INTEGRATION', () => {
+        it(`POST ${endpointUrl}`, async () => {
+            const response = await request(app)
+                .post(endpointUrl)
+                .send(newNote)
+            expect(response.statusCode).toBe(201)
+            expect(response.body.title).toBe(newNote.title)
+            expect(response.body.favorite).toBe(newNote.favorite)
+            newNoteId = response.body._id
+        })
+
+        it(`Should return an error 500 on malformed data with POST ${endpointUrl}`, async () => {
+            const response = await request(app)
+                .post(endpointUrl)
+                .send({
+                    title: "Make first unit test"
+                })
+            expect(response.statusCode).toBe(500)
+            expect(response.body).toStrictEqual({
+                message: 'Note validation failed: favorite: Path `favorite` is required.'
+            })
+        })
+    })
+
 })
