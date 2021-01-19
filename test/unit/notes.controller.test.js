@@ -136,5 +136,15 @@ describe('NoteController', () => {
         it('It should have a updateNote Function', () => {
             expect(typeof noteController.updateNote).toBe('function')
         })
+
+        it('Should call NoteModel.findByIdAndUpdate', async () => {
+            req.params.id = noteId
+            req.body = newNote
+            await noteController.updateNote(req, res, next)
+            expect(NoteModel.findByIdAndUpdate).toHaveBeenCalledWith(noteId, newNote, {
+                new: true,
+                useFindAndModify: false
+            })
+        })
     })
 })
