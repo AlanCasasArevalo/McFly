@@ -70,6 +70,16 @@ describe('NoteController', () => {
             expect(res._getJSONData()).toStrictEqual(allFavoriteNotes)
         })
 
+        it('Should handle errors', async function () {
+            const errorMessage = {
+                message: 'Error Finding'
+            }
+            const rejectedPromise = Promise.reject(errorMessage)
+            NoteModel.find.mockReturnValue(rejectedPromise)
+            await noteController.getAllFavoriteNotes(req, res, next)
+            expect(next).toHaveBeenCalledWith(errorMessage)
+        });
+
     })
 
     describe('Note Controller GET Note BY ID ', () => {
