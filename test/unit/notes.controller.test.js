@@ -20,8 +20,7 @@ beforeEach(() => {
 })
 
 describe('NoteController', () => {
-
-    describe('NoteController GET Note', () => {
+    describe('Note Controller GET Note', () => {
         it('Should have a getAllNotes function', () => {
             expect(typeof noteController.getAllNotes).toBe('function')
         })
@@ -50,7 +49,12 @@ describe('NoteController', () => {
         });
     })
 
-    describe('NoteController POST new note', () => {
+    describe('Note Controller GET Note BY ID ', () => {
+        it('Should have a getNoteById function', () => {
+            expect(typeof noteController.getNoteById).toBe('function')
+        })
+    })
+    describe('Note Controller POST new note', () => {
 
         beforeEach(() => {
             req.body = newNote
