@@ -146,5 +146,16 @@ describe('NoteController', () => {
                 useFindAndModify: false
             })
         })
+
+        it('Should return a response with json data and 200', async () => {
+            req.params.id = noteId
+            req.body = newNote
+
+            NoteModel.findByIdAndUpdate.mockReturnValue(newNote)
+            await noteController.updateNote(req, res, next)
+            expect(res._isEndCalled()).toBeTruthy()
+            expect(res.statusCode).toBe(200)
+            expect(res._getJSONData()).toStrictEqual(newNote)
+        })
     })
 })
