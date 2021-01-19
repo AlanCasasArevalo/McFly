@@ -1,4 +1,5 @@
 const newNote = require('../mock-data/new-note.json')
+const allNotes = require('../mock-data/all-notes.json')
 const httpsMocks = require('node-mocks-http')
 
 const noteController = require('../../controllers/note.controller')
@@ -30,6 +31,13 @@ describe('NoteController', () => {
             expect(NoteModel.find).toHaveBeenCalledWith({})
         })
 
+        it('Should return response with status 200 and all notes', async () => {
+            NoteModel.find.mockReturnValue(allNotes)
+            await noteController.getAllNotes(req, res, next)
+            expect(res.statusCode).toBe(200)
+            expect(res._isEndCalled()).toBeTruthy()
+            expect(res._getJSONData()).toStrictEqual(allNotes)
+        })
     })
 
     describe('NoteController POST new note', () => {
