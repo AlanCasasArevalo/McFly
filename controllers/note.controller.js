@@ -37,6 +37,8 @@ const getNoteById = async (req, res, next) => {
 }
 
 const getAllFavoriteNotes = async (req, res, next) => {
+    const allNotes = await NoteModel.find({favorite: true})
+    res.status(200).json(allNotes)
 }
 
 const updateNote = async (req, res, next) => {
