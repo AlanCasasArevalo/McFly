@@ -11,6 +11,7 @@ const createNote = async (req, res, next) => {
 }
 
 const getAllNotes = async (req, res, next) => {
+    const allNotes = await NoteModel.find({})
 }
 
 module.exports = {
