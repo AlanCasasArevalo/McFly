@@ -36,8 +36,13 @@ const getNoteById = async (req, res, next) => {
 
 }
 
+const updateNote = async (req, res, next) => {
+
+}
+
 module.exports = {
     createNote,
     getAllNotes,
-    getNoteById
+    getNoteById,
+    updateNote
 }
