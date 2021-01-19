@@ -55,6 +55,11 @@ describe('NoteController', () => {
         it('Should have a getAllFavoriteNotes function', () => {
             expect(typeof noteController.getAllFavoriteNotes).toBe('function')
         })
+
+        it('Should call NoteModel.find({})', async () => {
+            await noteController.getAllFavoriteNotes(req, res, next)
+            expect(NoteModel.find).toHaveBeenCalledWith({favorite: true})
+        })
     })
 
     describe('Note Controller GET Note BY ID ', () => {
