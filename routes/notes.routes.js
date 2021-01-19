@@ -8,6 +8,9 @@ router
     .get('/notes',
         noteController.getAllNotes
     )
+    .get('/notes/favorite',
+        noteController.getAllFavoriteNotes
+    )
     .get('/notes/:id',
         noteController.getNoteById
     )

@@ -19,6 +19,19 @@ describe(endpointUrl, () => {
         })
     })
 
+    describe('GET FAVORITE NOTE INTEGRATION', () => {
+        it(`GET ${endpointUrl}favorite`, async () => {
+            const response = await request(app)
+                .get(endpointUrl + 'favorite')
+            expect(response.statusCode).toBe(200)
+            expect(Array.isArray(response.body)).toBeTruthy()
+            expect(response.body[0].title).toBeDefined()
+            expect(response.body[0].favorite).toBeDefined()
+            firsNote = response.body[0]
+            firsNoteId = firsNote._id
+        })
+    })
+
     describe('GET NOTE BY ID INTEGRATION', () => {
         it(`GET BY ID ${endpointUrl}`, async () => {
             const response = await request(app)
