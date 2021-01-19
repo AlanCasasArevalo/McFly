@@ -19,6 +19,13 @@ beforeEach(() => {
 })
 
 describe('NoteController', () => {
+
+    describe('NoteController GET Note', () => {
+        it('Should have a getAllNotes function', () => {
+            expect(typeof noteController.getAllNotes).toBe('function')
+        })
+    })
+
     describe('NoteController POST new note', () => {
 
         beforeEach(() => {
