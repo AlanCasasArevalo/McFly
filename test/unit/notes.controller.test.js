@@ -1,11 +1,7 @@
-const newNote = require('../mock-data/new-note.json')
+const noteController = require('../../controllers/note.controller')
 
 describe('NoteController', () => {
     describe('NoteController POST new note', () => {
-
-        beforeEach(() => {
-            req.body = newNote
-        })
 
         it('It NoteController should be defined', () => {
             expect(noteController).toBeDefined()
