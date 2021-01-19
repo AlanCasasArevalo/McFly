@@ -50,7 +50,6 @@ describe('NoteController', () => {
             expect(next).toHaveBeenCalledWith(errorMessage)
         });
     })
-
     describe('Note Controller GET Note BY ID ', () => {
         it('Should have a getNoteById function', () => {
             expect(typeof noteController.getNoteById).toBe('function')
@@ -132,5 +131,10 @@ describe('NoteController', () => {
             expect(next).toHaveBeenCalledWith(errorMessage)
         });
 
+    })
+    describe('Note Controller PUT new note', () => {
+        it('It should have a updateNote Function', () => {
+            expect(typeof noteController.updateNote).toBe('function')
+        })
     })
 })
