@@ -24,6 +24,12 @@ describe('NoteController', () => {
         it('Should have a getAllNotes function', () => {
             expect(typeof noteController.getAllNotes).toBe('function')
         })
+
+        it('Should call NoteModel.find({})', async () => {
+            await noteController.getAllNotes(req, res, next)
+            expect(NoteModel.find).toHaveBeenCalledWith({})
+        })
+
     })
 
     describe('NoteController POST new note', () => {
