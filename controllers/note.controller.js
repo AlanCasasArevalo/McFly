@@ -38,6 +38,11 @@ const getNoteById = async (req, res, next) => {
 
 const updateNote = async (req, res, next) => {
 
+    const id = req.params.id
+    const updateNote = await NoteModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+        useFindAndModify: false
+    })
 }
 
 module.exports = {
