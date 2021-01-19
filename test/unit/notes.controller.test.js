@@ -37,5 +37,12 @@ describe('NoteController', () => {
             noteController.createNote(req, res, next)
             expect(NoteModel.create).toBeCalledWith(newNote)
         });
+
+        it('Should return 201 response code when everything it is ok', async function () {
+            await noteController.createNote(req, res, next)
+            expect(res.statusCode).toBe(201)
+            expect(res._isEndCalled()).toBeTruthy()
+        });
+
     })
 })
