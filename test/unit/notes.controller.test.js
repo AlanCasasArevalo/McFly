@@ -61,6 +61,14 @@ describe('NoteController', () => {
             await noteController.getNoteById(req, res, next)
             expect(NoteModel.findById).toHaveBeenCalledWith(noteId)
         })
+
+        it('Should return json body and response code 200', async () => {
+            NoteModel.findById.mockReturnValue(newNote)
+            await noteController.getNoteById(req, res, next)
+            expect(res.statusCode).toBe(200)
+            expect(res._isEndCalled()).toBeTruthy()
+            expect(res._getJSONData()).toStrictEqual(newNote)
+        })
     })
     describe('Note Controller POST new note', () => {
 
