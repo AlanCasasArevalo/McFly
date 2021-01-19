@@ -80,6 +80,16 @@ describe('NoteController', () => {
             expect(next).toHaveBeenCalledWith(errorMessage)
         });
 
+        it('Should return 404 when item does not exist', async () => {
+            NoteModel.findById.mockReturnValue(null)
+            await noteController.getNoteById(req, res, next)
+            expect(res.statusCode).toBe(404)
+            expect(res._isEndCalled()).toBeTruthy()
+            expect(res._getJSONData()).toStrictEqual({
+                message: 'Resource was not found'
+            })
+        })
+
     })
     describe('Note Controller POST new note', () => {
 
