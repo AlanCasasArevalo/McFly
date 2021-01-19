@@ -157,5 +157,15 @@ describe('NoteController', () => {
             expect(res.statusCode).toBe(200)
             expect(res._getJSONData()).toStrictEqual(newNote)
         })
+
+        it('Should handle errors', async function () {
+            const errorMessage = {
+                message: 'Resource was not found'
+            }
+            const rejectedPromise = Promise.reject(errorMessage)
+            NoteModel.findByIdAndUpdate.mockReturnValue(rejectedPromise)
+            await noteController.updateNote(req, res, next)
+            expect(next).toHaveBeenCalledWith(errorMessage)
+        })
     })
 })
