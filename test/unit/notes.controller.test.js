@@ -2,6 +2,7 @@ const newNote = require('../mock-data/new-note.json')
 const httpsMocks = require('node-mocks-http')
 
 const noteController = require('../../controllers/note.controller')
+const NoteModel = require("../../model/note.model");
 
 let req, res, next
 
@@ -26,5 +27,9 @@ describe('NoteController', () => {
             expect(typeof noteController.createNote).toBe('function')
         })
 
+        it('Note controller should received req, res and next', function () {
+            noteController.createNote(req, res, next)
+            expect(NoteModel.create).toBeCalledWith(newNote)
+        });
     })
 })
