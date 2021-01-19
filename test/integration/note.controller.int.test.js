@@ -3,7 +3,7 @@ const app = require('../../app')
 const endpointUrl = '/notes/'
 const newNote = require('../mock-data/new-note.json')
 
-let firsNote, newNoteId
+let firsNote, newNoteId, firsNoteId
 
 describe(endpointUrl, () => {
     describe('GET NOTE INTEGRATION', () => {
@@ -15,6 +15,24 @@ describe(endpointUrl, () => {
             expect(response.body[0].title).toBeDefined()
             expect(response.body[0].favorite).toBeDefined()
             firsNote = response.body[0]
+            firsNoteId = firsNote._id
         })
     })
+
+    describe('GET NOTE BY ID INTEGRATION', () => {
+        it(`GET BY ID ${endpointUrl}`, async () => {
+            const response = await request(app)
+                .get(endpointUrl + firsNote._id)
+            expect(response.statusCode).toBe(200)
+            expect(response.body).toBeTruthy()
+            expect(response.body.title).toEqual(firsNote.title)
+            expect(response.body.favorite).toEqual(firsNote.favorite)
+        })
+        it(`GET BY ID ${endpointUrl} does not exist`, async () => {
+            const response = await request(app)
+                .get(endpointUrl + `/${firsNoteId}`)
+            expect(response.statusCode).toBe(404)
+        })
+    })
+
 })
