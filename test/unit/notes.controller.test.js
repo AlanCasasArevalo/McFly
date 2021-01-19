@@ -50,6 +50,13 @@ describe('NoteController', () => {
             expect(next).toHaveBeenCalledWith(errorMessage)
         });
     })
+
+    describe('Note Controller GET Favorite Note', () => {
+        it('Should have a getAllFavoriteNotes function', () => {
+            expect(typeof noteController.getAllFavoriteNotes).toBe('function')
+        })
+    })
+
     describe('Note Controller GET Note BY ID ', () => {
         it('Should have a getNoteById function', () => {
             expect(typeof noteController.getNoteById).toBe('function')
