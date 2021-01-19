@@ -11,8 +11,12 @@ const createNote = async (req, res, next) => {
 }
 
 const getAllNotes = async (req, res, next) => {
-    const allNotes = await NoteModel.find({})
-    res.status(200).json(allNotes)
+    try {
+        const allNotes = await NoteModel.find({})
+        res.status(200).json(allNotes)
+    } catch (error) {
+        next(error)
+    }
 }
 
 module.exports = {
