@@ -46,9 +46,7 @@ const getAllFavoriteNotes = async (req, res, next) => {
         if (allNotes && typeof allNotes !== 'undefined') {
             res.status(200).json(allNotes)
         } else {
-            res.status(404).json({
-                message: 'Resource was not found'
-            })
+            res.status(200).json([])
         }
     } catch (error) {
         next(error)
