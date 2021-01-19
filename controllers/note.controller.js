@@ -44,7 +44,14 @@ const updateNote = async (req, res, next) => {
             new: true,
             useFindAndModify: false
         })
-        res.status(200).json(updateNote)
+
+        if (updateNote && typeof updateNote !== 'undefined') {
+            res.status(200).json(updateNote)
+        } else {
+            res.status(404).json({
+                message: 'Resource was not found'
+            })
+        }
     } catch (error) {
         next(error)
     }
