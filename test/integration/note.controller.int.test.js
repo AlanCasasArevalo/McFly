@@ -59,4 +59,27 @@ describe(endpointUrl, () => {
         })
     })
 
+    describe('PUT NOTE INTEGRATION', () => {
+        it(`PUT ${endpointUrl}`, async () => {
+            const noteTest = {
+                title: "Make integration test for put",
+                favorite: true
+            }
+
+            const response = await request(app)
+                .put(endpointUrl + newNoteId)
+                .send(noteTest)
+            expect(response.statusCode).toBe(200)
+            expect(response.body.title).toBe(noteTest.title)
+            expect(response.body.favorite).toBe(noteTest.favorite)
+        })
+
+        it(`PUT ${endpointUrl} does not exist 404`, async () => {
+            const response = await request(app)
+                .put(endpointUrl + '/5a8aa67aa5695a197574aaa5')
+            expect(response.statusCode).toBe(404)
+        })
+
+    })
+
 })
