@@ -10,6 +10,10 @@ const createNote = async (req, res, next) => {
     }
 }
 
+const getAllNotes = async (req, res, next) => {
+}
+
 module.exports = {
-    createNote
+    createNote,
+    getAllNotes
 }
